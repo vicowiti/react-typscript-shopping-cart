@@ -2,8 +2,10 @@ import React from "react";
 import { Button, Container, Nav, Navbar as NavBarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 const Navbar = () => {
+  const { openCart, cartQuantity } = useShoppingCart();
   return (
     <NavBarBs className="bg-white shadow-sm mb-3" sticky="top">
       <Container>
@@ -21,6 +23,7 @@ const Navbar = () => {
           </Nav.Link>
         </Nav>
         <Button
+          onClick={openCart}
           className="rounded-circle"
           variant="outline-primary"
           style={{
@@ -35,7 +38,7 @@ const Navbar = () => {
           }}
         >
           <AiOutlineShoppingCart size="1.5rem" />
-          <div>3</div>
+          <div style={{ color: "red" }}>{cartQuantity()}</div>
         </Button>
       </Container>
     </NavBarBs>
